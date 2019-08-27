@@ -58,6 +58,14 @@
   version = "v0.0.7"
 
 [[projects]]
+  branch = "master"
+  digest = "1:d59637661a19bee961510e9a18bb8b20de9cf748fabfd9d27153b3d8224f70a3"
+  name = "github.com/mau-vargas/crud-golang"
+  packages = ["data/repository"]
+  pruneopts = "UT"
+  revision = "fedc86ba93a0d9e24412ee3aad6b9d5e72892bff"
+
+[[projects]]
   digest = "1:33422d238f147d247752996a26574ac48dcf472976eda7f5134015f06bf16563"
   name = "github.com/modern-go/concurrent"
   packages = ["."]
@@ -72,14 +80,6 @@
   pruneopts = "UT"
   revision = "4b7aa43c6742a2c18fdef89dd197aaae7dac7ccd"
   version = "1.0.1"
-
-[[projects]]
-  digest = "1:aee48a5cef97344996b0b403dde6a3c333baf4e9289991897bd401e61689df88"
-  name = "github.com/thedevsaddam/renderer"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "50d2f6151f9d45c16f127596b4cc9be4e5a66b3e"
-  version = "v1.2.0"
 
 [[projects]]
   digest = "1:d0072748c62defde1ad99dde77f6ffce492a0e5aea9204077e497c7edfb86653"
@@ -119,7 +119,7 @@
   input-imports = [
     "github.com/gin-gonic/gin",
     "github.com/lib/pq",
-    "github.com/thedevsaddam/renderer",
+    "github.com/mau-vargas/crud-golang/data/repository",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
