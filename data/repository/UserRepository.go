@@ -1,11 +1,9 @@
-/*package main
+package main
 
 import (
 	"database/sql"
 	"time"
 )
-
-
 
 
 type userRepository struct {
@@ -36,7 +34,7 @@ type User struct {
 
 
 
-func  (db *userRepository)GetUser() ([]User, error) {
+/*func  (db *userRepository)GetUser() ([]User, error) {
 	const query = `SELECT nameUser, lastname ,email, created_at FROM users ORDER BY created_at DESC LIMIT 100`
 
 	rows, err := db.Query(query)

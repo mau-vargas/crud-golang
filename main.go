@@ -8,7 +8,9 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	"time")
+	"time"
+	"github.com/mau-vargas/crud-golang/data/repository"
+	)
 
 const (
 	DbHost     = "crudgolang"
@@ -136,6 +138,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+
 	// do not forget to close the connection
 	defer db.Close()
 	// ensuring the table is created
@@ -149,5 +153,7 @@ func main() {
 	if err := r.Run(":8080"); err != nil {
 		panic(err)
 	}
+
+
 
 }
