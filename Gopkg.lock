@@ -58,14 +58,6 @@
   version = "v0.0.7"
 
 [[projects]]
-  branch = "master"
-  digest = "1:d59637661a19bee961510e9a18bb8b20de9cf748fabfd9d27153b3d8224f70a3"
-  name = "github.com/mau-vargas/crud-golang"
-  packages = ["data/repository"]
-  pruneopts = "UT"
-  revision = "fedc86ba93a0d9e24412ee3aad6b9d5e72892bff"
-
-[[projects]]
   digest = "1:33422d238f147d247752996a26574ac48dcf472976eda7f5134015f06bf16563"
   name = "github.com/modern-go/concurrent"
   packages = ["."]
@@ -119,7 +111,6 @@
   input-imports = [
     "github.com/gin-gonic/gin",
     "github.com/lib/pq",
-    "github.com/mau-vargas/crud-golang/data/repository",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
