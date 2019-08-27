@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+
+  crudgolang:
+    container_name: cruddb
+    image: postgres
+    hostname: crudgolang
+    environment:
+      GET_HOST_FROM: dns
+      POSTGRES_DB: crud_name
+      POSTGRES_USER: postgress-crud
+      POSTGRES_PASWORD: crudpassword
+    ports:
+      - 5432:5432
+    networks:
+      - crudnet
+
+  crudgolangapi:
+    container_name: crudgolangapi
+    image: mauvargas/crudgolang:v1
+    hostname: crudgolangapi
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      GET_HOSTS_FROM: dns
+    networks:
+      - crudnet
+    volumes:
+      - .:/go/src/crudgolangapi
+    ports:
+      - 8080:8080
+    depends_on:
+      - crudgolang
+    links:
+      - crudgolang
+    labels:
+      kompose.service.type: LoadBalancer
+
+networks:
+  crudnet:
+    driver: bridge

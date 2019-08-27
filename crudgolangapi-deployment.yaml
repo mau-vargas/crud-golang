@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.type: LoadBalancer
+    kompose.version: 1.18.0 ()
+  creationTimestamp: null
+  labels:
+    io.kompose.service: crudgolangapi
+  name: crudgolangapi
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: crudgolangapi
+    spec:
+      containers:
+      - env:
+        - name: GET_HOSTS_FROM
+          value: dns
+        image: mauvargas/crudgolang:v1
+        name: crudgolangapi
+        ports:
+        - containerPort: 8080
+        resources: {}
+        volumeMounts:
+        - mountPath: /go/src/crudgolangapi
+          name: crudgolangapi-claim0
+      hostname: crudgolangapi
+      restartPolicy: Always
+      volumes:
+      - name: crudgolangapi-claim0
+        persistentVolumeClaim:
+          claimName: crudgolangapi-claim0
+status: {}
