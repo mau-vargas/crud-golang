@@ -10,7 +10,6 @@ import (
 	"time"
 )
 
-
 func serveStatic(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("test.html")
 	if err != nil {
@@ -25,15 +24,15 @@ func serveStatic(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-
-
 	//http.HandleFunc("/", serveStatic)
 	//http.ListenAndServe(":8080", nil)
 
-    var err error
+	userRepository := repository.User{}
+
+	var err error
 	r := gin.Default()
 	r.GET("/get", func(context *gin.Context) {
-		result, err := repository.GetUser()
+		result, err := userRepository.GetUser()
 		if err != nil {
 			context.JSON(http.StatusInternalServerError, gin.H{"status": "internal error uno :" + err.Error()})
 			return
@@ -43,10 +42,10 @@ func main() {
 	})
 
 	r.POST("/post", func(context *gin.Context) {
-		var b repository.User
-		if context.Bind(&b) == nil {
-			b.CreatedAt = time.Now()
-			if err := repository.AddUser(b); err != nil {
+		//var b repository.User
+		if context.Bind(&userRepository) == nil {
+			userRepository.CreatedAt = time.Now()
+			if err := userRepository.AddUser(); err != nil {
 				context.JSON(http.StatusInternalServerError, gin.H{"status": "internal error post" + err.Error()})
 				return
 			}
@@ -61,7 +60,7 @@ func main() {
 		var b repository.User
 		if context.Bind(&b) == nil {
 			b.CreatedAt = time.Now()
-			if err := repository.UpdateUser(b); err != nil {
+			if err := userRepository.UpdateUser(); err != nil {
 				context.JSON(http.StatusInternalServerError, gin.H{"status": "internal error post" + err.Error()})
 				return
 			}
@@ -71,7 +70,6 @@ func main() {
 		context.JSON(http.StatusUnprocessableEntity, gin.H{"status": "500"})
 	})
 
-
-	repository.OpenDB(err,r)
+	repository.OpenDB(err, r)
 
 }
