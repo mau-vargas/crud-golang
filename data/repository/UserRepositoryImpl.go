@@ -23,12 +23,7 @@ email text NOT NULL,
 created_at timestamp with time zone DEFAULT current_timestamp)`
 )
 
-type User struct {
-	NameUser  string    `json:"nameUser" binding:"required"`
-	LastName  string    `json:"lastname" binding:"required"`
-	Email     string    `json:"email" binding:"required"`
-	CreatedAt time.Time `json:"created_at"`
-}
+
 
 var db *sql.DB
 
@@ -83,15 +78,23 @@ func (user User) GetUser() ([]User, error) {
 }
 
 
-func (user User) AddUser() error {
+func (user User) AddUser(newUser User)  error {
 	const query = `INSERT INTO users(nameUser,lastname,email,created_at) VALUES ($1,$2,$3,$4)`
-	_, err := db.Exec(query, user.NameUser, user.LastName, user.Email, user.CreatedAt)
+	_, err := db.Exec(query, newUser.NameUser, newUser.LastName, newUser.Email, newUser.CreatedAt)
 	return err
 }
 
 
-func (user User) UpdateUser () error {
+func (user User) UpdateUser (updateUser User) error{
 	const query = `UPDATE  users SET nameUser = $1, lastname = $2 WHERE email = $3`
-	_, err := db.Exec(query, user.NameUser, user.LastName, user.Email)
+	_, err := db.Exec(query, updateUser.NameUser, updateUser.LastName, updateUser.Email)
 	return err
+}
+
+func (user User ) Imprimir1(interfacePrueba UserRepository) {
+	interfacePrueba.Imprimir()
+}
+
+func (user User )Imprimir()   {
+	println(user.NameUser)
 }

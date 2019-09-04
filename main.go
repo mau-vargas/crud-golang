@@ -2,6 +2,7 @@ package main
 
 import (
 	"crud-golang/data/repository"
+	"crud-golang/domain"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
@@ -18,16 +19,22 @@ func serveStatic(w http.ResponseWriter, r *http.Request) {
 	items := struct {
 		Version string
 	}{
-		Version: "0.0.1",
+		Version: "0.0.2",
 	}
 	t.Execute(w, items)
 }
 
 func main() {
+
 	//http.HandleFunc("/", serveStatic)
 	//http.ListenAndServe(":8080", nil)
 
-	userRepository := repository.User{}
+
+
+
+	user := domain.User{}
+	userRepository :=repository.UserRepository(user)
+
 
 	var err error
 	r := gin.Default()
@@ -43,9 +50,9 @@ func main() {
 
 	r.POST("/post", func(context *gin.Context) {
 		//var b repository.User
-		if context.Bind(&userRepository) == nil {
-			userRepository.CreatedAt = time.Now()
-			if err := userRepository.AddUser(); err != nil {
+		if context.Bind(&user) == nil {
+			user.CreatedAt = time.Now()
+			if err := userRepository.AddUser(user); err != nil {
 				context.JSON(http.StatusInternalServerError, gin.H{"status": "internal error post" + err.Error()})
 				return
 			}
@@ -60,7 +67,7 @@ func main() {
 		var b repository.User
 		if context.Bind(&b) == nil {
 			b.CreatedAt = time.Now()
-			if err := userRepository.UpdateUser(); err != nil {
+			if err := userRepository.UpdateUser(user); err != nil {
 				context.JSON(http.StatusInternalServerError, gin.H{"status": "internal error post" + err.Error()})
 				return
 			}

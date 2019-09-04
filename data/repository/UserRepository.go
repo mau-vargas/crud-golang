@@ -1,7 +1,11 @@
 package repository
 
+import "crud-golang/domain"
+
 type UserRepository interface {
-	GetUser () ([]User, error)
-	AddUser(user User) error
-	UpdateUser(user User) error
+	GetUser () ([]domain.User, error)
+	AddUser(user domain.User) error
+	UpdateUser(user domain.User) error
+
+	Imprimir()
 }
