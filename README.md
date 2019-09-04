@@ -46,18 +46,17 @@ instrucciones sql
 
 USERCASE
 
-
-
 kompose convert(comando en la consola)
 
 kubectl
 
 
+Entities: Reglas de negocio
+Use Cases: reglas de negocio
+Controller: logica que se le aplica a los resultados de usercase
+Framework & Driver: Database
 
 
+# Referencias
+https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
 
-
-Entities:
-Use Cases: 
-Controller: 
-Framework & Driver: 
