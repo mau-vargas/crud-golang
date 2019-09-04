@@ -39,7 +39,25 @@ Kubernete
 docker push "usurio_docker"/crud-golang
 
 
+
+CLEAN
+REPOSITORY
+instrucciones sql 
+
+USERCASE
+
+
+
 kompose convert(comando en la consola)
 
 kubectl
 
+
+
+
+
+
+Entities:
+Use Cases: 
+Controller: 
+Framework & Driver: 
